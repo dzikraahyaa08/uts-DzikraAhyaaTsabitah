@@ -351,8 +351,9 @@ const handleHapus = async () => {
   
   const payload = {
     data_setoran: selectedSudahSetor.value.map(item => ({
-      nama_komponen_setoran: item.nama,
-      id_komponen_setoran: item.id
+      id: item.info_setoran?.id,
+      id_komponen_setoran: item.id,
+      nama_komponen_setoran: item.nama
     }))
   }
   
