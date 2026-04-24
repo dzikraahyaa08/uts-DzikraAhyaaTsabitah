@@ -383,7 +383,7 @@ onMounted(() => {
 }
 
 .header-banner {
-  background: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%);
+  background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
 }
 
 .banner-bg {
