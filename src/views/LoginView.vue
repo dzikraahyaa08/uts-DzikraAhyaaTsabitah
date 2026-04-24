@@ -2,7 +2,7 @@
   <v-container fluid class="pa-0 fill-height bg-grey-lighten-4">
     <v-row no-gutters class="fill-height">
       <!-- Left Side - Visual/Branding -->
-      <v-col cols="12" md="6" class="d-none d-md-flex align-center justify-center position-relative overflow-hidden" style="background: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%);">
+      <v-col cols="12" md="6" class="d-none d-md-flex align-center justify-center position-relative overflow-hidden" style="background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);">
         <div class="position-absolute" style="width: 600px; height: 600px; background: rgba(255,255,255,0.1); border-radius: 50%; top: -10%; left: -20%; filter: blur(40px);"></div>
         <div class="position-absolute" style="width: 400px; height: 400px; background: rgba(255,255,255,0.05); border-radius: 50%; bottom: -10%; right: -10%; filter: blur(30px);"></div>
         
@@ -21,7 +21,7 @@
               <div class="d-md-none mb-6">
                 <v-icon size="64" color="indigo-accent-4">mdi-book-open-page-variant</v-icon>
               </div>
-              <h2 class="text-h4 font-weight-black text-indigo-darken-4 mb-2">Selamat Datang 👋</h2>
+              <h2 class="text-h4 font-weight-black text-indigo-accent-4 mb-2">Selamat Datang 👋</h2>
               <p class="text-grey-darken-1 text-subtitle-1">Silakan masuk menggunakan akun UIN Suska Anda.</p>
             </div>
             
@@ -134,7 +134,7 @@ const handleLogin = async () => {
 
 :deep(.v-field--focused) {
   background: #ffffff;
-  box-shadow: 0 4px 20px rgba(67, 56, 202, 0.08) !important;
+  box-shadow: 0 4px 20px rgba(30, 58, 138, 0.08) !important;
 }
 
 :deep(.v-btn) {

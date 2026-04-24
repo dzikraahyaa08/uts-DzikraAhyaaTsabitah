@@ -51,7 +51,7 @@
       <template v-else>
         <!-- Filter/Toolbar -->
         <div class="d-flex align-center justify-space-between mb-6 bg-white pa-4 rounded-xl shadow-sm">
-          <h2 class="text-h5 font-weight-bold text-indigo-darken-4 mb-0 d-flex align-center">
+          <h2 class="text-h5 font-weight-bold text-indigo-accent-4 mb-0 d-flex align-center">
             <v-icon color="indigo-accent-4" class="mr-2 pb-1">mdi-account-group</v-icon>
             Mahasiswa Bimbingan
             <v-chip class="ml-3 font-weight-bold" color="indigo-accent-4" size="small">{{ students.length }}</v-chip>
@@ -200,7 +200,7 @@ onMounted(() => {
 }
 
 .header-banner {
-  background: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%);
+  background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
 }
 
 .banner-bg {
@@ -232,8 +232,8 @@ onMounted(() => {
 
 .student-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 12px 30px rgba(67, 56, 202, 0.1) !important;
-  border-color: rgba(79, 70, 229, 0.2) !important;
+  box-shadow: 0 12px 30px rgba(30, 58, 138, 0.1) !important;
+  border-color: rgba(30, 58, 138, 0.2) !important;
 }
 
 .line-clamp-1 {
@@ -252,7 +252,7 @@ onMounted(() => {
 }
 
 .search-input :deep(.v-field--focused) {
-  border-color: #4f46e5;
+  border-color: #1e3a8a;
   background-color: white !important;
 }
 </style>

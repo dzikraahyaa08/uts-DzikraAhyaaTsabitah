@@ -44,7 +44,7 @@
         <!-- Progress Summary -->
         <v-col cols="12" md="4">
           <v-card class="rounded-xl shadow-sm border-0 pa-6 h-100 d-flex flex-column align-center text-center">
-            <h3 class="text-h6 font-weight-bold text-indigo-darken-4 mb-6">Total Progres</h3>
+            <h3 class="text-h6 font-weight-bold text-indigo-accent-4 mb-6">Total Progres</h3>
             
             <v-progress-circular
               :model-value="summary?.persentase_progres_setor || 0"
