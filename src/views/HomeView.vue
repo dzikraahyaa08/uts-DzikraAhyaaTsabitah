@@ -92,6 +92,24 @@
           </v-col>
         </v-row>
 
+        <!-- Batch Summary Section -->
+        <v-card class="rounded-xl shadow-sm border-0 pa-6 mb-6">
+          <h3 class="text-h6 font-weight-bold text-grey-darken-3 mb-4 d-flex align-center">
+            <v-icon color="grey-darken-1" class="mr-2">mdi-chart-box-outline</v-icon>
+            Ringkasan Angkatan
+          </h3>
+          <v-row>
+            <v-col v-for="item in angkatanSummary" :key="item.tahun" cols="12" sm="6" md="4" lg="3">
+              <div class="d-flex align-center justify-space-between pa-3 rounded-lg bg-grey-lighten-5 border">
+                <span class="font-weight-medium text-grey-darken-2">Angkatan {{ item.tahun }}</span>
+                <v-chip size="small" color="indigo-lighten-5" class="text-indigo-accent-4 font-weight-bold">
+                  {{ item.total }} mahasiswa
+                </v-chip>
+              </div>
+            </v-col>
+          </v-row>
+        </v-card>
+
         <!-- Filter/Toolbar -->
         <div class="d-flex align-center justify-space-between mb-6 bg-white pa-4 rounded-xl shadow-sm">
           <h2 class="text-h5 font-weight-bold text-indigo-accent-4 mb-0 d-flex align-center">
@@ -182,6 +200,7 @@ import { getPaSaya } from '../services/dosen'
 import { logout as authLogout } from '../services/auth'
 
 const students = ref([])
+const angkatanSummary = ref([])
 const profile = ref(null)
 const loading = ref(true)
 const errorMessage = ref('')
@@ -230,10 +249,12 @@ const fetchData = async () => {
        }
        
         if (resPaSaya.info_mahasiswa_pa && resPaSaya.info_mahasiswa_pa.daftar_mahasiswa) {
-         // FILTER: Ambil semua yang memiliki target 23 surah
-         students.value = resPaSaya.info_mahasiswa_pa.daftar_mahasiswa.filter(mhs => mhs.info_setoran?.total_wajib_setor == 23)
+         // Tampilkan semua data mahasiswa tanpa filter
+         students.value = resPaSaya.info_mahasiswa_pa.daftar_mahasiswa
+         angkatanSummary.value = resPaSaya.info_mahasiswa_pa.ringkasan || []
        } else {
          students.value = []
+         angkatanSummary.value = []
        }
     }
   } catch (e) {
