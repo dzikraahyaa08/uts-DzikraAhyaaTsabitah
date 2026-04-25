@@ -229,9 +229,9 @@ const fetchData = async () => {
          nip: resPaSaya.nip
        }
        
-       if (resPaSaya.info_mahasiswa_pa && resPaSaya.info_mahasiswa_pa.daftar_mahasiswa) {
-         // FILTER: Hanya ambil angkatan 2024
-         students.value = resPaSaya.info_mahasiswa_pa.daftar_mahasiswa.filter(mhs => mhs.angkatan == '2024')
+        if (resPaSaya.info_mahasiswa_pa && resPaSaya.info_mahasiswa_pa.daftar_mahasiswa) {
+         // FILTER: Ambil semua yang memiliki target 23 surah
+         students.value = resPaSaya.info_mahasiswa_pa.daftar_mahasiswa.filter(mhs => mhs.info_setoran?.total_wajib_setor == 23)
        } else {
          students.value = []
        }
