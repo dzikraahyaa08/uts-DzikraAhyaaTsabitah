@@ -49,6 +49,49 @@
 
       <!-- Data State -->
       <template v-else>
+        <!-- Global Summary Cards -->
+        <v-row class="mb-6">
+          <v-col cols="12" sm="6" md="3">
+            <v-card class="rounded-xl shadow-sm border-0 pa-5 h-100">
+              <div class="text-overline font-weight-bold text-grey">TOTAL WAJIB</div>
+              <div class="d-flex align-end mt-2">
+                <div class="text-h4 font-weight-black text-grey-darken-4">{{ totalStats.wajib }}</div>
+                <div class="text-subtitle-1 ml-2 mb-1 text-grey font-weight-bold">Surah</div>
+              </div>
+            </v-card>
+          </v-col>
+          
+          <v-col cols="12" sm="6" md="3">
+            <v-card class="rounded-xl shadow-sm border-0 pa-5 h-100 bg-emerald text-white">
+              <div class="text-overline font-weight-bold opacity-80">SUDAH SETOR</div>
+              <div class="d-flex align-end mt-2">
+                <div class="text-h4 font-weight-black">{{ totalStats.sudah }}</div>
+                <div class="text-subtitle-1 ml-2 mb-1 opacity-80 font-weight-bold">Surah</div>
+              </div>
+            </v-card>
+          </v-col>
+
+          <v-col cols="12" sm="6" md="3">
+            <v-card class="rounded-xl shadow-sm border-0 pa-5 h-100">
+              <div class="text-overline font-weight-bold text-grey">BELUM SETOR</div>
+              <div class="d-flex align-end mt-2">
+                <div class="text-h4 font-weight-black text-red-darken-1">{{ totalStats.belum }}</div>
+                <div class="text-subtitle-1 ml-2 mb-1 text-grey font-weight-bold">Surah</div>
+              </div>
+            </v-card>
+          </v-col>
+
+          <v-col cols="12" sm="6" md="3">
+            <v-card class="rounded-xl shadow-sm border-0 pa-5 h-100">
+              <div class="text-overline font-weight-bold text-grey">PROGRESS TOTAL</div>
+              <div class="mt-2">
+                <div class="text-h4 font-weight-black text-indigo-accent-4">{{ totalStats.progress }}%</div>
+                <v-progress-linear :model-value="totalStats.progress" color="indigo-accent-4" rounded height="6" class="mt-2"></v-progress-linear>
+              </div>
+            </v-card>
+          </v-col>
+        </v-row>
+
         <!-- Filter/Toolbar -->
         <div class="d-flex align-center justify-space-between mb-6 bg-white pa-4 rounded-xl shadow-sm">
           <h2 class="text-h5 font-weight-bold text-indigo-accent-4 mb-0 d-flex align-center">
@@ -160,6 +203,17 @@ const filteredStudents = computed(() => {
   );
 })
 
+const totalStats = computed(() => {
+  if (students.value.length === 0) return { wajib: 0, sudah: 0, belum: 0, progress: 0 };
+  
+  const wajib = students.value.reduce((acc, m) => acc + (m.info_setoran?.total_wajib_setor || 37), 0);
+  const sudah = students.value.reduce((acc, m) => acc + (m.info_setoran?.total_sudah_setor || 0), 0);
+  const belum = wajib - sudah;
+  const progress = wajib > 0 ? Math.round((sudah / wajib) * 100) : 0;
+  
+  return { wajib, sudah, belum, progress };
+})
+
 const fetchData = async () => {
   loading.value = true
   errorMessage.value = ''
@@ -254,5 +308,9 @@ onMounted(() => {
 .search-input :deep(.v-field--focused) {
   border-color: #1e3a8a;
   background-color: white !important;
+}
+
+.bg-emerald {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
 }
 </style>
