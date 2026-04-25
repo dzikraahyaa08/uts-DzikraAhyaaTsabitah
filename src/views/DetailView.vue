@@ -299,8 +299,11 @@ const loadData = async (nim) => {
     const data = await getSetoranMahasiswa(nim)
     if (data) {
       student.value = data.info
-      // FILTER: Hanya ambil surah mulai dari Adh-Dhuha (ID 93) ke atas
-      rawProgress.value = (data.setoran?.detail || []).filter(item => parseInt(item.external_id) >= 93)
+      // FILTER: Ambil Al-Fatihah (ID 1) DAN surah mulai dari Adh-Dhuha (ID 93) ke atas. Total = 23 Surah.
+      rawProgress.value = (data.setoran?.detail || []).filter(item => {
+        const id = parseInt(item.external_id)
+        return id === 1 || id >= 93
+      })
       summary.value = data.setoran?.info_dasar || null
       // Reset selections
       selectedSudahSetor.value = []
