@@ -148,7 +148,7 @@
                   
                   <div class="d-flex justify-space-between align-center">
                     <div class="text-caption text-grey">
-                      <span class="font-weight-bold text-grey-darken-3">{{ mhs.info_setoran?.total_sudah_setor || 0 }}</span> dari {{ mhs.info_setoran?.total_wajib_setor || 37 }} Surah
+                      <span class="font-weight-bold text-grey-darken-3">{{ mhs.info_setoran?.total_sudah_setor || 0 }}</span> dari {{ mhs.info_setoran?.total_wajib_setor || 23 }} Surah
                     </div>
                     <div class="text-caption text-grey d-flex align-center">
                       <v-icon size="small" class="mr-1" color="grey">mdi-clock-outline</v-icon>
@@ -206,7 +206,7 @@ const filteredStudents = computed(() => {
 const totalStats = computed(() => {
   if (students.value.length === 0) return { wajib: 0, sudah: 0, belum: 0, progress: 0 };
   
-  const wajib = students.value.reduce((acc, m) => acc + (m.info_setoran?.total_wajib_setor || 37), 0);
+  const wajib = students.value.reduce((acc, m) => acc + (m.info_setoran?.total_wajib_setor || 23), 0);
   const sudah = students.value.reduce((acc, m) => acc + (m.info_setoran?.total_sudah_setor || 0), 0);
   const belum = wajib - sudah;
   const progress = wajib > 0 ? Math.round((sudah / wajib) * 100) : 0;
@@ -230,7 +230,8 @@ const fetchData = async () => {
        }
        
        if (resPaSaya.info_mahasiswa_pa && resPaSaya.info_mahasiswa_pa.daftar_mahasiswa) {
-         students.value = resPaSaya.info_mahasiswa_pa.daftar_mahasiswa
+         // FILTER: Hanya ambil angkatan 2024
+         students.value = resPaSaya.info_mahasiswa_pa.daftar_mahasiswa.filter(mhs => mhs.angkatan == '2024')
        } else {
          students.value = []
        }
