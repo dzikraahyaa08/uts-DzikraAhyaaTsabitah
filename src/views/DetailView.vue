@@ -299,7 +299,8 @@ const loadData = async (nim) => {
     const data = await getSetoranMahasiswa(nim)
     if (data) {
       student.value = data.info
-      rawProgress.value = data.setoran?.detail || []
+      // FILTER: Hanya ambil surah mulai dari Adh-Dhuha (ID 93) ke atas
+      rawProgress.value = (data.setoran?.detail || []).filter(item => parseInt(item.external_id) >= 93)
       summary.value = data.setoran?.info_dasar || null
       // Reset selections
       selectedSudahSetor.value = []
