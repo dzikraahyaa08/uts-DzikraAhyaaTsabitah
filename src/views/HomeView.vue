@@ -51,7 +51,17 @@
       <template v-else>
         <!-- Global Summary Cards -->
         <v-row class="mb-6">
-          <v-col cols="12" sm="6" md="3">
+          <v-col cols="12" sm="6" md="2" lg="2">
+            <v-card class="rounded-xl shadow-sm border-0 pa-5 h-100 bg-indigo-accent-4 text-white">
+              <div class="text-overline font-weight-bold opacity-80">TOTAL MAHASISWA</div>
+              <div class="d-flex align-end mt-2">
+                <div class="text-h4 font-weight-black">{{ students.length }}</div>
+                <div class="text-subtitle-2 ml-2 mb-1 opacity-80">Orang</div>
+              </div>
+            </v-card>
+          </v-col>
+
+          <v-col cols="12" sm="6" md="3" lg="2">
             <v-card class="rounded-xl shadow-sm border-0 pa-5 h-100">
               <div class="text-overline font-weight-bold text-grey">TOTAL WAJIB</div>
               <div class="d-flex align-end mt-2">
@@ -166,7 +176,7 @@
                   
                   <div class="d-flex justify-space-between align-center">
                     <div class="text-caption text-grey">
-                      <span class="font-weight-bold text-grey-darken-3">{{ mhs.info_setoran?.total_sudah_setor || 0 }}</span> dari {{ mhs.info_setoran?.total_wajib_setor || 23 }} Surah
+                      <span class="font-weight-bold text-grey-darken-3">{{ mhs.info_setoran?.total_sudah_setor || 0 }}</span> dari {{ mhs.info_setoran?.total_wajib_setor || 37 }} Surah
                     </div>
                     <div class="text-caption text-grey d-flex align-center">
                       <v-icon size="small" class="mr-1" color="grey">mdi-clock-outline</v-icon>
@@ -225,7 +235,7 @@ const filteredStudents = computed(() => {
 const totalStats = computed(() => {
   if (students.value.length === 0) return { wajib: 0, sudah: 0, belum: 0, progress: 0 };
   
-  const wajib = students.value.reduce((acc, m) => acc + (m.info_setoran?.total_wajib_setor || 23), 0);
+  const wajib = students.value.reduce((acc, m) => acc + (m.info_setoran?.total_wajib_setor || 37), 0);
   const sudah = students.value.reduce((acc, m) => acc + (m.info_setoran?.total_sudah_setor || 0), 0);
   const belum = wajib - sudah;
   const progress = wajib > 0 ? Math.round((sudah / wajib) * 100) : 0;
